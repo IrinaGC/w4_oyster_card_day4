@@ -54,7 +54,7 @@ describe "#touch_out" do
   let(:exit_station){ double :station }
   it "touches out" do
     allow(subject).to receive(:balance).and_return 10
-    expect(subject.touch_out(exit_station)).to eq(false)
+    expect(subject.touch_out(exit_station)).to eq(nil)
   end
 
   it "saves current journey history" do
@@ -84,7 +84,7 @@ describe "#touch_out" do
   it "check if in journey" do
     allow(subject).to receive(:balance).and_return 10
     subject.touch_in(entry_station)
-    expect(subject).to be_in_journey
+    expect(subject.in_journey?).to eq true
   end
 
   it "check if not in journey" do
